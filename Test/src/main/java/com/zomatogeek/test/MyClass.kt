@@ -67,4 +67,58 @@ fun main() {
         }
     }
 
+    println()
+    val animalAge = 7
+    println("The cat age is ${calculateCatAge(animalAge)}")
+
+    println(message = "The dog age is ${calculateDogAge(animalAge)}")
+
+    println("Lambda Sum is ${sum(10, 20)}")
+
+    name2("Amrit")
+
+    enhancedMessage("Hello Training Lambda!"){
+        12
+    }
+    enhancedMessage("Hello Training Lambda!"){
+        sum(5,10)
+    }
+
+    enhancedMessage2("Hello Trailing Lambda Two!"){
+        print(it)
+        sum(12,20)
+    }
+}
+
+fun calculateCatAge(age: Int): Int{
+    return age * 7
+}
+
+fun calculateDogAge(age: Int) : Int = age * 8
+
+// Lambda Function
+// val lambdaName: Type = { parameterList -> codeBody }
+val sum: (Int, Int) -> Int = { a, b -> a + b }
+
+val catAgeLambda: (Int) -> Int = { age -> age * 8 }
+
+val catAgeLambda2: (Int) -> Int = {  it * 7 }
+
+// NOTE: Unit in Kotlin means void/nothing
+val name: (String) -> Unit = { name -> print(name) }
+
+val name2: (String) -> Unit = { print(it) }
+
+// Trailing Lambda
+// ( Last parameter of a function must be a function so that it can be passed as parameter
+// within body of function or lambda )
+
+// Lambda Curly Braces are Bold than normal function Curly Braces
+
+fun enhancedMessage(message: String, funAsParameter: () -> Int ){
+    println("$message ${funAsParameter()}")
+}
+
+fun enhancedMessage2(message: String, funAsParameter: (String) -> Int ){
+    println("$message ${funAsParameter("Hey!")}")
 }
